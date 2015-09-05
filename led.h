@@ -8,29 +8,29 @@
 #include <htc.h>
 
 
-#define SEGM_A_PIN   RC0
-#define SEGM_A_TRIS  TRISC0
+#define SEGM_H_PIN   RC0
+#define SEGM_H_TRIS  TRISC0
 
-#define SEGM_B_PIN   RC1
-#define SEGM_B_TRIS  TRISC1
+#define SEGM_A_PIN   RC1
+#define SEGM_A_TRIS  TRISC1
 
-#define SEGM_C_PIN   RC2
-#define SEGM_C_TRIS  TRISC2
+#define SEGM_B_PIN   RC2
+#define SEGM_B_TRIS  TRISC2
 
-#define SEGM_D_PIN   RC3
-#define SEGM_D_TRIS  TRISC3
+#define SEGM_C_PIN   RC3
+#define SEGM_C_TRIS  TRISC3
 
-#define SEGM_E_PIN   RD0
-#define SEGM_E_TRIS  TRISD0
+#define SEGM_D_PIN   RD0
+#define SEGM_D_TRIS  TRISD0
 
-#define SEGM_F_PIN   RD1
-#define SEGM_F_TRIS  TRISD1
+#define SEGM_E_PIN   RD1
+#define SEGM_E_TRIS  TRISD1
 
-#define SEGM_G_PIN   RD2
-#define SEGM_G_TRIS  TRISD2
+#define SEGM_F_PIN   RD2
+#define SEGM_F_TRIS  TRISD2
 
-#define SEGM_H_PIN   RD3
-#define SEGM_H_TRIS  TRISD3
+#define SEGM_G_PIN   RD3
+#define SEGM_G_TRIS  TRISD3
 
 
 #define COMMON_1       RC4
@@ -87,29 +87,29 @@ COMMON_1=0; //turn off all digits
 COMMON_2=0;
 COMMON_3=0;
 
-if(BIT_IS_SET(sbuff[digit],0)) SEGM_A_PIN=1;
+if(BIT_IS_SET(sbuff[digit],0)) SEGM_H_PIN=1;
+else SEGM_H_PIN=0;
+
+if(BIT_IS_SET(sbuff[digit],1)) SEGM_A_PIN=1;
 else SEGM_A_PIN=0;
 
-if(BIT_IS_SET(sbuff[digit],1)) SEGM_B_PIN=1;
+if(BIT_IS_SET(sbuff[digit],2)) SEGM_B_PIN=1;
 else SEGM_B_PIN=0;
 
-if(BIT_IS_SET(sbuff[digit],2)) SEGM_C_PIN=1;
+if(BIT_IS_SET(sbuff[digit],3)) SEGM_C_PIN=1;
 else SEGM_C_PIN=0;
 
-if(BIT_IS_SET(sbuff[digit],3)) SEGM_D_PIN=1;
+if(BIT_IS_SET(sbuff[digit],4)) SEGM_D_PIN=1;
 else SEGM_D_PIN=0;
 
-if(BIT_IS_SET(sbuff[digit],4)) SEGM_E_PIN=1;
+if(BIT_IS_SET(sbuff[digit],5)) SEGM_E_PIN=1;
 else SEGM_E_PIN=0;
 
-if(BIT_IS_SET(sbuff[digit],5)) SEGM_F_PIN=1;
+if(BIT_IS_SET(sbuff[digit],6)) SEGM_F_PIN=1;
 else SEGM_F_PIN=0;
 
-if(BIT_IS_SET(sbuff[digit],6)) SEGM_G_PIN=1;
+if(BIT_IS_SET(sbuff[digit],7)) SEGM_G_PIN=1;
 else SEGM_G_PIN=0;
-
-if(BIT_IS_SET(sbuff[digit],7)) SEGM_H_PIN=1;
-else SEGM_H_PIN=0;
 
 	
 if(digit==0) COMMON_1=1;
@@ -147,9 +147,8 @@ switch(sign) //select the code of symbol
 if(pos<=2) sbuff[pos]=(tmp|(sbuff[pos]&0b00000001));
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void led_print(uint8_t pos, const char *str) //print a string  //pos - position 0..2 //str - text
+void led_print(uint8_t pos, const char *str) //print a string  //pos - 0..3 //str - text
 {
 for(;*str;) led_char(pos++,*str++);
 }
@@ -200,7 +199,6 @@ SEGM_G_TRIS=0;
 SEGM_H_PIN=0;
 SEGM_H_TRIS=0;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void led_off(void)
