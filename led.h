@@ -1,33 +1,55 @@
-// dynamic lighting for LED 3-digit 7-segment display
+// dynamic lighting for the 3-digit 7-segment LED display
 // the segments (anodes) are connected to the ports through resistors 750 Ohm
-// common cathodes are connected through npn transistors
-// 16-Aug-2015
+// common cathodes are connected through NPN transistors
+// 05-Sep-2015
+// compiler: HI-TECH C PRO for the PIC18 MCU Family  V9.63PL3
 
 
 #include <htc.h>
 
 
-#define SEGMENT_PORT  PORTD
-#define SEGMENT_TRIS  TRISD
+#define SEGM_A_PIN   RC0
+#define SEGM_A_TRIS  TRISC0
 
-#define COMMON_1       RC5
-#define COMMON_1_TRIS  TRISC5
+#define SEGM_B_PIN   RC1
+#define SEGM_B_TRIS  TRISC1
 
-#define COMMON_2       RC6
-#define COMMON_2_TRIS  TRISC6
+#define SEGM_C_PIN   RC2
+#define SEGM_C_TRIS  TRISC2
 
-#define COMMON_3       RC7
-#define COMMON_3_TRIS  TRISC7
+#define SEGM_D_PIN   RC3
+#define SEGM_D_TRIS  TRISC3
 
+#define SEGM_E_PIN   RD0
+#define SEGM_E_TRIS  TRISD0
+
+#define SEGM_F_PIN   RD1
+#define SEGM_F_TRIS  TRISD1
+
+#define SEGM_G_PIN   RD2
+#define SEGM_G_TRIS  TRISD2
+
+#define SEGM_H_PIN   RD3
+#define SEGM_H_TRIS  TRISD3
+
+
+#define COMMON_1       RC4
+#define COMMON_1_TRIS  TRISC4
+
+#define COMMON_2       RC5
+#define COMMON_2_TRIS  TRISC5
+
+#define COMMON_3       RC6
+#define COMMON_3_TRIS  TRISC6
+
+
+#define BIT_IS_SET(reg, bit) ((reg>>bit)&1)
 
 #define SET_BIT(reg, bit) (reg |= (1<<bit))
 #define CLR_BIT(reg, bit) (reg &= (~(1<<bit)))
 
 
-typedef signed char int8_t; //stdint
 typedef unsigned char uint8_t;
-typedef signed int int16_t;
-typedef unsigned int uint16_t;
 
 
 const uint8_t scode[] = //codes of symbols //segments: g-f-e-d-c-b-a-h(dot)
@@ -65,7 +87,30 @@ COMMON_1=0; //turn off all digits
 COMMON_2=0;
 COMMON_3=0;
 
-SEGMENT_PORT=sbuff[digit]; //load code of segments
+if(BIT_IS_SET(sbuff[digit],0)) SEGM_A_PIN=1;
+else SEGM_A_PIN=0;
+
+if(BIT_IS_SET(sbuff[digit],1)) SEGM_B_PIN=1;
+else SEGM_B_PIN=0;
+
+if(BIT_IS_SET(sbuff[digit],2)) SEGM_C_PIN=1;
+else SEGM_C_PIN=0;
+
+if(BIT_IS_SET(sbuff[digit],3)) SEGM_D_PIN=1;
+else SEGM_D_PIN=0;
+
+if(BIT_IS_SET(sbuff[digit],4)) SEGM_E_PIN=1;
+else SEGM_E_PIN=0;
+
+if(BIT_IS_SET(sbuff[digit],5)) SEGM_F_PIN=1;
+else SEGM_F_PIN=0;
+
+if(BIT_IS_SET(sbuff[digit],6)) SEGM_G_PIN=1;
+else SEGM_G_PIN=0;
+
+if(BIT_IS_SET(sbuff[digit],7)) SEGM_H_PIN=1;
+else SEGM_H_PIN=0;
+
 	
 if(digit==0) COMMON_1=1;
 if(digit==1) COMMON_2=1;
@@ -102,8 +147,9 @@ switch(sign) //select the code of symbol
 if(pos<=2) sbuff[pos]=(tmp|(sbuff[pos]&0b00000001));
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void led_print(uint8_t pos, const char *str) //print a string
+void led_print(uint8_t pos, const char *str) //print a string  //pos - 0..3 //str - text
 {
 for(;*str;) led_char(pos++,*str++);
 }
@@ -130,9 +176,31 @@ COMMON_2=0;
 COMMON_3_TRIS=0;
 COMMON_3=0;
 
-SEGMENT_TRIS=0;
-SEGMENT_PORT=0;
+SEGM_A_PIN=0;
+SEGM_A_TRIS=0;
+
+SEGM_B_PIN=0;
+SEGM_B_TRIS=0;
+
+SEGM_C_PIN=0;
+SEGM_C_TRIS=0;
+
+SEGM_D_PIN=0;
+SEGM_D_TRIS=0;
+
+SEGM_E_PIN=0;
+SEGM_E_TRIS=0;
+
+SEGM_F_PIN=0;
+SEGM_F_TRIS=0;
+
+SEGM_G_PIN=0;
+SEGM_G_TRIS=0;
+
+SEGM_H_PIN=0;
+SEGM_H_TRIS=0;
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void led_off(void)
@@ -141,7 +209,14 @@ COMMON_1_TRIS=1;
 COMMON_2_TRIS=1;
 COMMON_3_TRIS=1;
 
-SEGMENT_TRIS=1;
+SEGM_A_TRIS=1;
+SEGM_B_TRIS=1;
+SEGM_C_TRIS=1;
+SEGM_D_TRIS=1;
+SEGM_E_TRIS=1;
+SEGM_F_TRIS=1;
+SEGM_G_TRIS=1;
+SEGM_H_TRIS=1;
 }
 
 

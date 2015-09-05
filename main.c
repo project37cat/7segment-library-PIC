@@ -1,5 +1,5 @@
 // 3x7segment LED display test
-// 17-08-2015
+// 05-Sep-2015
 
 
 #define _XTAL_FREQ 8000000
@@ -31,14 +31,7 @@ if (TMR0IF) //the timer 0 overflow interrupt
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void delay_ms(uint16_t val)  //delay milliseconds  //correct for 8MHz speed
-{
-while(val--) __delay_ms(1);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-void system_init(void)
+void main(void)
 {
 IRCF2=1; IRCF1=1; IRCF0=1; //8MHz internal RC oscillator
 
@@ -50,47 +43,16 @@ TMR0IE=1; //timer overflow intterrupt enable
 
 PEIE=1; //peripheral interrupt enable
 GIE=1; //global interrupts enable
-}
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-void main(void)
-{
-system_init();
 
 led_init();
+led_clear();
+	
+led_print(0,"123");
+	
+led_dot(0,1);
+led_dot(1,1);
+led_dot(2,1);
 		
-for(;;)
-	{		
-	led_clear();
-	
-	led_print(0,"1");
-	led_dot(0,1);
-	
-	delay_ms(1000);
-	
-	led_print(1,"2");
-	led_dot(1,1);
-	
-	delay_ms(1000);
-	
-	led_print(2,"3");
-	led_dot(2,1);
-	
-	delay_ms(1000);		
-	
-	led_dot(0,0);
-	led_dot(1,0);
-	led_dot(2,0);
-	
-	delay_ms(1000);
-	
-	led_print(0,"888");
-	
-	led_dot(0,1);
-	led_dot(1,1);
-	led_dot(2,1);
-
-	delay_ms(2000);
-	}
+for(;;);
 }
