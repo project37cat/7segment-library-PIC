@@ -149,7 +149,7 @@ if(pos<=2) sbuff[pos]=(tmp|(sbuff[pos]&0b00000001));
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void led_print(uint8_t pos, const char *str) //print a string  //pos - 0..3 //str - text
+void led_print(uint8_t pos, const char *str) //print a string  //pos - position 0..2 //str - text
 {
 for(;*str;) led_char(pos++,*str++);
 }
