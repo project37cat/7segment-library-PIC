@@ -2,51 +2,118 @@
 // the segments (anodes) are connected to the ports through resistors 750 Ohm
 // common cathodes are connected through NPN transistors
 // 05-Sep-2015
-// compiler: HI-TECH C PRO for the PIC18 MCU Family  V9.63PL3
 
 
 #include <htc.h>
 
 
-#define SEGM_H_PIN   RC0
-#define SEGM_H_TRIS  TRISC0
+#define SEG_H_PIN   0
+#define SEG_H_PORT  PORTC
+#define SEG_H_TRIS  TRISC
 
-#define SEGM_A_PIN   RC1
-#define SEGM_A_TRIS  TRISC1
+#define SEG_A_PIN   1
+#define SEG_A_PORT  PORTC
+#define SEG_A_TRIS  TRISC
 
-#define SEGM_B_PIN   RC2
-#define SEGM_B_TRIS  TRISC2
+#define SEG_B_PIN   2
+#define SEG_B_PORT  PORTC
+#define SEG_B_TRIS  TRISC
 
-#define SEGM_C_PIN   RC3
-#define SEGM_C_TRIS  TRISC3
+#define SEG_C_PIN   3
+#define SEG_C_PORT  PORTC
+#define SEG_C_TRIS  TRISC
 
-#define SEGM_D_PIN   RD0
-#define SEGM_D_TRIS  TRISD0
+#define SEG_D_PIN   0
+#define SEG_D_PORT  PORTD
+#define SEG_D_TRIS  TRISD
 
-#define SEGM_E_PIN   RD1
-#define SEGM_E_TRIS  TRISD1
+#define SEG_E_PIN   1
+#define SEG_E_PORT  PORTD
+#define SEG_E_TRIS  TRISD
 
-#define SEGM_F_PIN   RD2
-#define SEGM_F_TRIS  TRISD2
+#define SEG_F_PIN   2
+#define SEG_F_PORT  PORTD
+#define SEG_F_TRIS  TRISD
 
-#define SEGM_G_PIN   RD3
-#define SEGM_G_TRIS  TRISD3
+#define SEG_G_PIN   3
+#define SEG_G_PORT  PORTD
+#define SEG_G_TRIS  TRISD
 
 
-#define COMMON_1       RC4
-#define COMMON_1_TRIS  TRISC4
+#define COM_1_PIN   4
+#define COM_1_PORT  PORTC
+#define COM_1_TRIS  TRISC
 
-#define COMMON_2       RC5
-#define COMMON_2_TRIS  TRISC5
+#define COM_2_PIN   5
+#define COM_2_PORT  PORTC
+#define COM_2_TRIS  TRISC
 
-#define COMMON_3       RC6
-#define COMMON_3_TRIS  TRISC6
+#define COM_3_PIN   6
+#define COM_3_PORT  PORTC
+#define COM_3_TRIS  TRISC
 
 
 #define BIT_IS_SET(reg, bit) ((reg>>bit)&1)
 
 #define SET_BIT(reg, bit) (reg |= (1<<bit))
 #define CLR_BIT(reg, bit) (reg &= (~(1<<bit)))
+
+
+#define SEG_A_CLR     CLR_BIT(SEG_A_PORT, SEG_A_PIN)
+#define SEG_A_SET     SET_BIT(SEG_A_PORT, SEG_A_PIN)
+#define SEG_A_OUTPUT  CLR_BIT(SEG_A_TRIS, SEG_A_PIN)
+#define SEG_A_INPUT   SET_BIT(SEG_A_TRIS, SEG_A_PIN)
+
+#define SEG_B_CLR     CLR_BIT(SEG_B_PORT, SEG_B_PIN)
+#define SEG_B_SET     SET_BIT(SEG_B_PORT, SEG_B_PIN)
+#define SEG_B_OUTPUT  CLR_BIT(SEG_B_TRIS, SEG_B_PIN)
+#define SEG_B_INPUT   SET_BIT(SEG_B_TRIS, SEG_B_PIN)
+
+#define SEG_C_CLR     CLR_BIT(SEG_C_PORT, SEG_C_PIN)
+#define SEG_C_SET     SET_BIT(SEG_C_PORT, SEG_C_PIN)
+#define SEG_C_OUTPUT  CLR_BIT(SEG_C_TRIS, SEG_C_PIN)
+#define SEG_C_INPUT   SET_BIT(SEG_C_TRIS, SEG_C_PIN)
+
+#define SEG_D_CLR     CLR_BIT(SEG_D_PORT, SEG_D_PIN)
+#define SEG_D_SET     SET_BIT(SEG_D_PORT, SEG_D_PIN)
+#define SEG_D_OUTPUT  CLR_BIT(SEG_D_TRIS, SEG_D_PIN)
+#define SEG_D_INPUT   SET_BIT(SEG_D_TRIS, SEG_D_PIN)
+
+#define SEG_E_CLR     CLR_BIT(SEG_E_PORT, SEG_E_PIN)
+#define SEG_E_SET     SET_BIT(SEG_E_PORT, SEG_E_PIN)
+#define SEG_E_OUTPUT  CLR_BIT(SEG_E_TRIS, SEG_E_PIN)
+#define SEG_E_INPUT   SET_BIT(SEG_E_TRIS, SEG_E_PIN)
+
+#define SEG_F_CLR     CLR_BIT(SEG_F_PORT, SEG_F_PIN)
+#define SEG_F_SET     SET_BIT(SEG_F_PORT, SEG_F_PIN)
+#define SEG_F_OUTPUT  CLR_BIT(SEG_F_TRIS, SEG_F_PIN)
+#define SEG_F_INPUT   SET_BIT(SEG_F_TRIS, SEG_F_PIN)
+
+#define SEG_G_CLR     CLR_BIT(SEG_G_PORT, SEG_G_PIN)
+#define SEG_G_SET     SET_BIT(SEG_G_PORT, SEG_G_PIN)
+#define SEG_G_OUTPUT  CLR_BIT(SEG_G_TRIS, SEG_G_PIN)
+#define SEG_G_INPUT   SET_BIT(SEG_G_TRIS, SEG_G_PIN)
+
+#define SEG_H_CLR     CLR_BIT(SEG_H_PORT, SEG_H_PIN)
+#define SEG_H_SET     SET_BIT(SEG_H_PORT, SEG_H_PIN)
+#define SEG_H_OUTPUT  CLR_BIT(SEG_H_TRIS, SEG_H_PIN)
+#define SEG_H_INPUT   SET_BIT(SEG_H_TRIS, SEG_H_PIN)
+
+
+#define COM_1_CLR     CLR_BIT(COM_1_PORT, COM_1_PIN)
+#define COM_1_SET     SET_BIT(COM_1_PORT, COM_1_PIN)
+#define COM_1_OUTPUT  CLR_BIT(COM_1_TRIS, COM_1_PIN)
+#define COM_1_INPUT   SET_BIT(COM_1_TRIS, COM_1_PIN)
+
+#define COM_2_CLR     CLR_BIT(COM_2_PORT, COM_2_PIN)
+#define COM_2_SET     SET_BIT(COM_2_PORT, COM_2_PIN)
+#define COM_2_OUTPUT  CLR_BIT(COM_2_TRIS, COM_2_PIN)
+#define COM_2_INPUT   SET_BIT(COM_2_TRIS, COM_2_PIN)
+
+#define COM_3_CLR     CLR_BIT(COM_3_PORT, COM_3_PIN)
+#define COM_3_SET     SET_BIT(COM_3_PORT, COM_3_PIN)
+#define COM_3_OUTPUT  CLR_BIT(COM_3_TRIS, COM_3_PIN)
+#define COM_3_INPUT   SET_BIT(COM_3_TRIS, COM_3_PIN)
 
 
 typedef unsigned char uint8_t;
@@ -83,38 +150,38 @@ void led_scan(void) //dynamic lighting (run 200-250 times per second)
 {
 static uint8_t digit=0;
 
-COMMON_1=0; //turn off all digits
-COMMON_2=0;
-COMMON_3=0;
+COM_1_CLR; //turn off all digits
+COM_2_CLR;
+COM_3_CLR;
 
-if(BIT_IS_SET(sbuff[digit],0)) SEGM_H_PIN=1;
-else SEGM_H_PIN=0;
+if(BIT_IS_SET(sbuff[digit],0)) SEG_H_SET;
+else SEG_H_CLR;
 
-if(BIT_IS_SET(sbuff[digit],1)) SEGM_A_PIN=1;
-else SEGM_A_PIN=0;
+if(BIT_IS_SET(sbuff[digit],1)) SEG_A_SET;
+else SEG_A_CLR;
 
-if(BIT_IS_SET(sbuff[digit],2)) SEGM_B_PIN=1;
-else SEGM_B_PIN=0;
+if(BIT_IS_SET(sbuff[digit],2)) SEG_B_SET;
+else SEG_B_CLR;
 
-if(BIT_IS_SET(sbuff[digit],3)) SEGM_C_PIN=1;
-else SEGM_C_PIN=0;
+if(BIT_IS_SET(sbuff[digit],3)) SEG_C_SET;
+else SEG_C_CLR;
 
-if(BIT_IS_SET(sbuff[digit],4)) SEGM_D_PIN=1;
-else SEGM_D_PIN=0;
+if(BIT_IS_SET(sbuff[digit],4)) SEG_D_SET;
+else SEG_D_CLR;
 
-if(BIT_IS_SET(sbuff[digit],5)) SEGM_E_PIN=1;
-else SEGM_E_PIN=0;
+if(BIT_IS_SET(sbuff[digit],5)) SEG_E_SET;
+else SEG_E_CLR;
 
-if(BIT_IS_SET(sbuff[digit],6)) SEGM_F_PIN=1;
-else SEGM_F_PIN=0;
+if(BIT_IS_SET(sbuff[digit],6)) SEG_F_SET;
+else SEG_F_CLR;
 
-if(BIT_IS_SET(sbuff[digit],7)) SEGM_G_PIN=1;
-else SEGM_G_PIN=0;
+if(BIT_IS_SET(sbuff[digit],7)) SEG_G_SET;
+else SEG_G_CLR;
 
 	
-if(digit==0) COMMON_1=1;
-if(digit==1) COMMON_2=1;
-if(digit==2) COMMON_3=1;
+if(digit==0) COM_1_SET;
+if(digit==1) COM_2_SET;
+if(digit==2) COM_3_SET;
 
 if(++digit>2) digit=0;
 }
@@ -168,53 +235,55 @@ if(pos<=2)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void led_init(void)
 {
-COMMON_1_TRIS=0;
-COMMON_1=0;
-COMMON_2_TRIS=0;
-COMMON_2=0;
-COMMON_3_TRIS=0;
-COMMON_3=0;
+COM_1_CLR;
+COM_1_OUTPUT;
 
-SEGM_A_PIN=0;
-SEGM_A_TRIS=0;
+COM_2_CLR;
+COM_2_OUTPUT;
 
-SEGM_B_PIN=0;
-SEGM_B_TRIS=0;
+COM_3_CLR;
+COM_3_OUTPUT;
 
-SEGM_C_PIN=0;
-SEGM_C_TRIS=0;
+SEG_A_CLR;
+SEG_A_OUTPUT;
 
-SEGM_D_PIN=0;
-SEGM_D_TRIS=0;
+SEG_B_CLR;
+SEG_B_OUTPUT;
 
-SEGM_E_PIN=0;
-SEGM_E_TRIS=0;
+SEG_C_CLR;
+SEG_C_OUTPUT;
 
-SEGM_F_PIN=0;
-SEGM_F_TRIS=0;
+SEG_D_CLR;
+SEG_D_OUTPUT;
 
-SEGM_G_PIN=0;
-SEGM_G_TRIS=0;
+SEG_E_CLR;
+SEG_E_OUTPUT;
 
-SEGM_H_PIN=0;
-SEGM_H_TRIS=0;
+SEG_F_CLR;
+SEG_F_OUTPUT;
+
+SEG_G_CLR;
+SEG_G_OUTPUT;
+
+SEG_H_CLR;
+SEG_H_OUTPUT;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void led_off(void)
 {
-COMMON_1_TRIS=1;
-COMMON_2_TRIS=1;
-COMMON_3_TRIS=1;
+COM_1_INPUT;
+COM_2_INPUT;
+COM_3_INPUT;
 
-SEGM_A_TRIS=1;
-SEGM_B_TRIS=1;
-SEGM_C_TRIS=1;
-SEGM_D_TRIS=1;
-SEGM_E_TRIS=1;
-SEGM_F_TRIS=1;
-SEGM_G_TRIS=1;
-SEGM_H_TRIS=1;
+SEG_A_INPUT;
+SEG_B_INPUT;
+SEG_C_INPUT;
+SEG_D_INPUT;
+SEG_E_INPUT;
+SEG_F_INPUT;
+SEG_G_INPUT;
+SEG_H_INPUT;
 }
 
 

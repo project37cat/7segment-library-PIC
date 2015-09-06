@@ -44,7 +44,6 @@ TMR0IE=1; //timer overflow intterrupt enable
 PEIE=1; //peripheral interrupt enable
 GIE=1; //global interrupts enable
 
-
 led_init();
 led_clear();
 	
@@ -53,6 +52,6 @@ led_print(0,"123");
 led_dot(0,1);
 led_dot(1,1);
 led_dot(2,1);
-		
+
 for(;;);
 }
