@@ -1,8 +1,6 @@
 // 3x7segment LED display test
-// 05-Sep-2015
-
-
-#define _XTAL_FREQ 8000000
+// 09-Sep-2015
+// HI-TECH C compiler
 
 
 #include <htc.h>
@@ -10,11 +8,12 @@
 #include "led.h"
 
 
-__CONFIG(1, RCIO );
-__CONFIG(2, BORDIS & WDTDIS );
+/* Config Bits for PIC18F4320 */
+__CONFIG(1, RCIO ); //RC oscillator
+__CONFIG(2, BORDIS & WDTDIS ); //disable Brown-out Reset  //disable  Watchdog Timer
 
 
-#define TMR0_LOAD 64910 //preload Timer 0 for overflow ~200Hz //65535-64910=625 125kHz/625=200
+#define TMR0_LOAD 64911 //preload Timer 0 for overflow ~200Hz //65536-64911=625 125kHz/625=200
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,13 +44,14 @@ PEIE=1; //peripheral interrupt enable
 GIE=1; //global interrupts enable
 
 led_init();
-led_clear();
 	
 led_print(0,"123");
-	
+
 led_dot(0,1);
 led_dot(1,1);
 led_dot(2,1);
+
+//led_clear();
 
 for(;;);
 }

@@ -8,49 +8,49 @@
 
 
 #define SEG_H_PIN   0
-#define SEG_H_PORT  PORTC
-#define SEG_H_TRIS  TRISC
+#define SEG_H_PORT  PORTD
+#define SEG_H_TRIS  TRISD
 
-#define SEG_A_PIN   1
+#define SEG_A_PIN   0
 #define SEG_A_PORT  PORTC
 #define SEG_A_TRIS  TRISC
 
-#define SEG_B_PIN   2
-#define SEG_B_PORT  PORTC
-#define SEG_B_TRIS  TRISC
+#define SEG_B_PIN   3
+#define SEG_B_PORT  PORTD
+#define SEG_B_TRIS  TRISD
 
-#define SEG_C_PIN   3
-#define SEG_C_PORT  PORTC
-#define SEG_C_TRIS  TRISC
+#define SEG_C_PIN   1
+#define SEG_C_PORT  PORTD
+#define SEG_C_TRIS  TRISD
 
-#define SEG_D_PIN   0
-#define SEG_D_PORT  PORTD
-#define SEG_D_TRIS  TRISD
+#define SEG_D_PIN   3
+#define SEG_D_PORT  PORTC
+#define SEG_D_TRIS  TRISC
 
 #define SEG_E_PIN   1
-#define SEG_E_PORT  PORTD
-#define SEG_E_TRIS  TRISD
+#define SEG_E_PORT  PORTC
+#define SEG_E_TRIS  TRISC
 
 #define SEG_F_PIN   2
-#define SEG_F_PORT  PORTD
-#define SEG_F_TRIS  TRISD
+#define SEG_F_PORT  PORTC
+#define SEG_F_TRIS  TRISC
 
-#define SEG_G_PIN   3
+#define SEG_G_PIN   2
 #define SEG_G_PORT  PORTD
 #define SEG_G_TRIS  TRISD
 
 
-#define COM_1_PIN   4
-#define COM_1_PORT  PORTC
-#define COM_1_TRIS  TRISC
+#define COM_1_PIN   6
+#define COM_1_PORT  PORTD
+#define COM_1_TRIS  TRISD
 
 #define COM_2_PIN   5
-#define COM_2_PORT  PORTC
-#define COM_2_TRIS  TRISC
+#define COM_2_PORT  PORTD
+#define COM_2_TRIS  TRISD
 
-#define COM_3_PIN   6
-#define COM_3_PORT  PORTC
-#define COM_3_TRIS  TRISC
+#define COM_3_PIN   4
+#define COM_3_PORT  PORTD
+#define COM_3_TRIS  TRISD
 
 
 #define BIT_IS_SET(reg, bit) ((reg>>bit)&1)
@@ -179,9 +179,9 @@ if(BIT_IS_SET(sbuff[digit],7)) SEG_G_SET;
 else SEG_G_CLR;
 
 	
-if(digit==0) COM_1_SET;
+if(digit==0) COM_3_SET;
 if(digit==1) COM_2_SET;
-if(digit==2) COM_3_SET;
+if(digit==2) COM_1_SET;
 
 if(++digit>2) digit=0;
 }
@@ -290,7 +290,7 @@ SEG_H_INPUT;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void led_clear(void)
 {
-sbuff[0]=0;
-sbuff[1]=0;
-sbuff[2]=0;
+sbuff[0]=0x00;
+sbuff[1]=0x00;
+sbuff[2]=0x00;
 }
