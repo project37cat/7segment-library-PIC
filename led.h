@@ -235,38 +235,38 @@ if(pos<=2)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void led_init(void)
 {
-COM_1_CLR;
 COM_1_OUTPUT;
+COM_1_CLR;
 
-COM_2_CLR;
 COM_2_OUTPUT;
+COM_2_CLR;
 
-COM_3_CLR;
 COM_3_OUTPUT;
+COM_3_CLR;
 
-SEG_A_CLR;
 SEG_A_OUTPUT;
+SEG_A_CLR;
 
-SEG_B_CLR;
 SEG_B_OUTPUT;
+SEG_B_CLR;
 
-SEG_C_CLR;
 SEG_C_OUTPUT;
+SEG_C_CLR;
 
-SEG_D_CLR;
 SEG_D_OUTPUT;
+SEG_D_CLR;
 
-SEG_E_CLR;
 SEG_E_OUTPUT;
+SEG_E_CLR;
 
-SEG_F_CLR;
 SEG_F_OUTPUT;
+SEG_F_CLR;
 
-SEG_G_CLR;
 SEG_G_OUTPUT;
+SEG_G_CLR;
 
-SEG_H_CLR;
 SEG_H_OUTPUT;
+SEG_H_CLR;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
